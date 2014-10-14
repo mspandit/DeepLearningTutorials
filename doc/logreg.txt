@@ -44,7 +44,11 @@ corresponds to a class. The distance from the input to a hyperplane reflects
 the probability that the input is a member of the corresponding class.
 
 Mathematically, the probability that an input vector :math:`x` is a member of a
+<<<<<<< HEAD
 class :math:`i` from a set of classes :math:`Y` can be written as:
+=======
+class :math:`i`, a value of a stochastic variable :math:`Y`, can be written as:
+>>>>>>> 3d44369cb810f518568da0e57df55d440c3f12fe
 
 .. math::
   P(Y=i|x, W,b) &= softmax_i(W x + b) \\
@@ -184,9 +188,9 @@ of gradient descent, can then be defined as follows:
 ``updates`` is a list of pairs. In each pair, the first element is the symbolic
 variable to be updated in the step, and the second element is the symbolic
 function for calculating its new value. Similarly, ``givens`` is a dictionary
-in which keys are symbolic variables and values are symbolic functions
-specifying their replacement values during the step. The function
-``train_model`` is then defined such that:
+in which keys are symbolic variables and values are expressions specifying
+their replacements during the step. The function ``train_model`` is then defined such
+that:
 
 * the input is the mini-batch index ``index`` that, together with the batch
   size (which is not an input since it is fixed) defines :math:`x` with
