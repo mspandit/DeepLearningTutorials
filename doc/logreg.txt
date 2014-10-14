@@ -44,11 +44,7 @@ corresponds to a class. The distance from the input to a hyperplane reflects
 the probability that the input is a member of the corresponding class.
 
 Mathematically, the probability that an input vector :math:`x` is a member of a
-<<<<<<< HEAD
-class :math:`i` from a set of classes :math:`Y` can be written as:
-=======
 class :math:`i`, a value of a stochastic variable :math:`Y`, can be written as:
->>>>>>> 3d44369cb810f518568da0e57df55d440c3f12fe
 
 .. math::
   P(Y=i|x, W,b) &= softmax_i(W x + b) \\
@@ -144,7 +140,7 @@ such classes to form a deep network. The output of one layer can be passed as
 the input of the layer above. (This tutorial does not build a multi-layer
 network, but this code will be reused in future tutorials that do.)
 
-Finally, we define a (symbolic) cost function to minimize, using the instance
+Finally, we define a (symbolic) ``cost`` variable to minimize, using the instance
 method ``classifier.negative_log_likelihood``.
 
 .. literalinclude:: ../code/logistic_sgd.py
@@ -177,7 +173,7 @@ To get the gradients :math:`\partial{\ell}/\partial{W}` and
   :start-after: # compute the gradient of cost
   :end-before: # start-snippet-3
 
-``g_W`` and ``g_b`` are symbolic function variables, which can be used as part
+``g_W`` and ``g_b`` are symbolic variables, which can be used as part
 of a computation graph. The function ``train_model``, which performs one step
 of gradient descent, can then be defined as follows:
 
@@ -188,7 +184,7 @@ of gradient descent, can then be defined as follows:
 ``updates`` is a list of pairs. In each pair, the first element is the symbolic
 variable to be updated in the step, and the second element is the symbolic
 function for calculating its new value. Similarly, ``givens`` is a dictionary
-in which keys are symbolic variables and values are expressions specifying
+whose keys are symbolic variables and whose values specify
 their replacements during the step. The function ``train_model`` is then defined such
 that:
 
@@ -204,8 +200,9 @@ that:
 
 Each time ``train_model(index)`` is called, it will thus compute and return the
 cost of a minibatch, while also performing a step of MSGD. The entire learning
-algorithm thus consists in looping over the examples in every minibatch of the
-dataset, and repeatedly calling the ``train_model`` function.
+algorithm thus consists in looping over all examples in the dataset, considering
+all the examples in one minibatch at a time,
+and repeatedly calling the ``train_model`` function.
 
 
 Testing the model
